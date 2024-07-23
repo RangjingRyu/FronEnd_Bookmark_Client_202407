@@ -1,18 +1,22 @@
-export default function BookmarkPage()  {
-  const { titles } = getData()
-  
+import { getAllBookmarks } from "@/lib/bookmarkApi";
+import { BookmarkType, BookmarksResponse } from "@/types";
+import Bookmarks from '@/app/components/Bookmarks';
+
+type Props = {
+  searchParams: { page: string }
+}
+
+export default async function BookmarkPage(props: Props)  {
+  const { page = 1 } = props.searchParams
+  const bookmarksData: Promise<BookmarksResponse> = getAllBookmarks(parseInt(String(page)))
+  const { data } = await bookmarksData
+  const bookmarks: BookmarkType[] = data
+
   return (
     <div>
-        <h1>Welcome to Bookmarker</h1>
         {
-          titles.map((title,idx) => <h2 key={idx}>{title}</h2>)
+          <Bookmarks bookmarks={bookmarks} />
         }
     </div>
   );
-}
-
-function getData()  {
-  return {
-      titles: ['Bookmark1', 'Bookmark2']
-  }
 }
