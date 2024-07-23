@@ -1,9 +1,18 @@
-export default function Home() {
+export default function BookmarkPage()  {
+  const { titles } = getData()
+  
   return (
     <div>
-      <main>
         <h1>Welcome to Bookmarker</h1>
-      </main>
+        {
+          titles.map((title,idx) => <h2 key={idx}>{title}</h2>)
+        }
     </div>
   );
+}
+
+function getData()  {
+  return {
+      titles: ['Bookmark1', 'Bookmark2']
+  }
 }
