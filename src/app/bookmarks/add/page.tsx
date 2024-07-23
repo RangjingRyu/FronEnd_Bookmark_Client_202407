@@ -37,14 +37,12 @@ const AddBookmarkPage = () => {
 	    } catch (error) {
 	      console.log('등록 실패!!!!')  
 	      console.log(error);
-	      setMessage("Bookmark saved fail");  
+	      setMessage("Bookmark saved failed");  
 	    }
 	
 	    setTitle("");
 	    setUrl("");
 	        
-     }
-
      }
 
     return (
